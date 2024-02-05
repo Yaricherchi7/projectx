@@ -1,9 +1,9 @@
 <a href="https://projectx-eight-gilt.vercel.app/">
-  <h1 align="center">ProjectX (Placeholder Name)</h1>
+  <h1 align="center">ProjectX: Revolutionizing Financial Management</h1>
 </a>
 
 <p align="center">
-  Start at full speed with Projectx !
+  Empower your financial management with ProjectX - AI-driven insights at your fingertips. Optimize your finances effortlessly.
 </p>
 
 <p align="center">
@@ -26,6 +26,12 @@
 
 ## Introduction
 
+Welcome to ProjectX, where we're ushering in a new era of financial management. Leveraging cutting-edge AI, ProjectX redefines how you track, analyze, and optimize your finances, ensuring smarter, more secure financial decisions.
+
+With ProjectX, gain unparalleled insights into your spending habits and financial patterns, empowering you to budget better and experience more. Trusted by the world's most innovative companies, ProjectX is here to revolutionize your financial management experience.
+
+## What we are using
+
 Lets goooo - Next.js 14, Turborepo, Drizzle ORM, Planetscale, Clerk, Resend, React Email, Shadcn/ui, and Stripe.
 <br/>
 All seamlessly integrated with the Projectx to accelerate the development.
@@ -35,12 +41,12 @@ All seamlessly integrated with the Projectx to accelerate the development.
 ProjectX is a monorepo managed by [Turborepo](https://turbo.build/repo). The monorepo is split between `apps` and `packages` directories.
 
     .
-    ├── apps                         # Its app workspace which contains 
-    │    ├── www                     # Nextjs app which is deployed in Vercel       
-    │    └── ...                                      
+    ├── apps                         # Its app workspace which contains
+    │    ├── www                     # Nextjs app which is deployed in Vercel
+    │    └── ...
     ├── tooling                      # are the shared configuration that are used by the apps and packages (e.g. `@projectx/eslint-config`)
     ├── packages                     # are the shared packages that are used by the apps (e.g. `@projectx/components`)
-    ├── docker-compose.yml                  
+    ├── docker-compose.yml
     ├── LICENSE
     └── README.md
 
@@ -68,6 +74,12 @@ cp .env.example .env.local
 ```
 
 4. Input everything you need for the env.
+
+   1. Create [Clerk](https://clerk.com) Account
+   2. Create [Planet Scale](https://planetscale.com/) Account
+   3. Create [Resend](https://resend.com) Account
+   4. Create [Stripe](https://stripe.com) Account
+   5. Create [Edge Store](https://edgestore.dev) Account
 
 5. Start the development server from either yarn or turbo:
 
@@ -125,6 +137,8 @@ The default setting for `TEST_EMAIL_ADDRESS` is `delivered@resend.dev` but you h
 - [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
 - [PlanetScale](https://planetscale.com/) – A cutting-edge database platform for seamless, scalable data management
 - [Resend](https://resend.com/) – A powerful email framework for streamlined email development
+- [Edge Store](https://edgestore.dev/) - Storage, CDN and a super easy to use type-safe library.
+- [Stripe](https://stripe.com) - Payments
 
 ### UI
 
