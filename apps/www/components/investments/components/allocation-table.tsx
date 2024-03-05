@@ -15,26 +15,12 @@ import {
   VisibilityState,
 } from "@tanstack/react-table";
 import {
-  ArrowRightLeftIcon,
-  BadgeDollarSign,
-  Building,
-  Car,
   CarIcon,
-  Check,
   CoffeeIcon,
-  CreditCard,
-  Divide,
   HomeIcon,
   KeyIcon,
-  Mail,
-  MessageSquare,
-  PlusCircle,
-  Repeat2,
-  Settings,
   ShoppingBagIcon,
-  ShoppingCartIcon,
   StarIcon,
-  UserPlus,
 } from "lucide-react";
 
 import { Progress } from "@/components/ui/progress";
@@ -99,6 +85,7 @@ export const columns: ColumnDef<Category>[] = [
       const icon = row.original.icon; // Assuming 'icon' is the key in your data for icon names
       return (
         <div className="flex items-center">
+          {/* @ts-ignore */}
           {iconMap[icon]} {/* Render the corresponding icon */}
           <div className="capitalize">{name}</div>
         </div>
@@ -187,7 +174,7 @@ export function AllocationTable() {
   });
 
   return (
-    <div className="flex flex-col space-y-1.5 p-6">
+    <div className="flex flex-col space-y-1.5 p-4">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

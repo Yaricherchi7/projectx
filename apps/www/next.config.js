@@ -8,15 +8,19 @@ import("./env.mjs");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
 
   transpilePackages: [
     "@projectx/api",
     "@projectx/db",
     "@projectx/openbanking",
+    "@projectx/stripe",
     "@projectx/transactional",
     "@projectx/validators",
   ],
+
+  /** We already do linting and typechecking as separate tasks in CI */
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
 
   images: {
     remotePatterns: [
@@ -37,6 +41,15 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "tailwindui.com",
+      },
+      // TODO: remove code below
+      {
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "asset.brandfetch.io",
       },
     ],
   },

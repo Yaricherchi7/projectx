@@ -54,7 +54,7 @@ interface MailProps {
 
 export function RecurringDashboard({
   accounts,
-  defaultLayout = [265, 440, 400],
+  defaultLayout = [20, 40, 40],
   defaultCollapsed = false,
   navCollapsedSize,
 }: MailProps) {
@@ -66,7 +66,7 @@ export function RecurringDashboard({
       <ResizablePanelGroup
         direction="horizontal"
         onLayout={(sizes: number[]) => {
-          document.cookie = `react-resizable-panels:layout=${JSON.stringify(
+          document.cookie = `react-resizable-panels:layout-recurring=${JSON.stringify(
             sizes,
           )}`;
         }}
@@ -154,7 +154,7 @@ export function RecurringDashboard({
                 label: "",
                 icon: Sparkle,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/aimagic",
               },
               {
                 title: "Save Money",
@@ -256,7 +256,7 @@ export function RecurringDashboard({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-          <Separator />
+          {/* <Separator /> */}
           <RecurringSpentSoFarCard />
           <div>
             {/* <SmallInvestmentCard /> */}

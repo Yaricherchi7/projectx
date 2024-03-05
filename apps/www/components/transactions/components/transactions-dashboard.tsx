@@ -35,9 +35,11 @@ import { WorkspaceSwitcher } from "@/app/(dashboard)/dashboard/_components/works
 
 import { Mail } from "../data";
 import { useMail } from "../use-mail";
+import { AccountsReviewTable2 } from "./accounts-review-table2";
 import { MailDisplay } from "./mail-display";
 import { MailList } from "./mail-list";
 import { Nav } from "./nav";
+import { TransactionsDisplay } from "./transactions-display";
 
 interface TransactionsDashboardProps {
   accounts: {
@@ -54,7 +56,7 @@ interface TransactionsDashboardProps {
 export function TransactionsDashboard({
   accounts,
   mails,
-  defaultLayout = [265, 440, 655],
+  defaultLayout = [20, 40, 40],
   defaultCollapsed = false,
   navCollapsedSize,
 }: TransactionsDashboardProps) {
@@ -66,7 +68,7 @@ export function TransactionsDashboard({
       <ResizablePanelGroup
         direction="horizontal"
         onLayout={(sizes: number[]) => {
-          document.cookie = `react-resizable-panels:layout=${JSON.stringify(
+          document.cookie = `react-resizable-panels:layout-transactions=${JSON.stringify(
             sizes,
           )}`;
         }}
@@ -154,7 +156,7 @@ export function TransactionsDashboard({
                 label: "",
                 icon: Sparkle,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/aimagic",
               },
               {
                 title: "Save Money",
@@ -284,7 +286,8 @@ export function TransactionsDashboard({
               </form>
             </div>
             <TabsContent value="all" className="m-0">
-              <MailList items={mails} />
+              {/* @ts-ignore */}
+              <AccountsReviewTable2 mailId={undefined} />
             </TabsContent>
             <TabsContent value="unread" className="m-0">
               <MailList items={mails.filter((item) => !item.read)} />
@@ -293,9 +296,12 @@ export function TransactionsDashboard({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[2]}>
-          <MailDisplay
+          <TransactionsDisplay
             mail={mails.find((item) => item.id === mail.selected) || null}
           />
+          {/* <MailDisplay
+            mail={mails.find((item) => item.id === mail.selected) || null}
+          /> */}
         </ResizablePanel>
       </ResizablePanelGroup>
     </TooltipProvider>

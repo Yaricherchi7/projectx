@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useClerk } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/dist/types/server";
 import { CreditCard, LayoutDashboard, LogOut, Settings } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,14 +20,14 @@ export type NormalizedUser = {
 };
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user: NormalizedUser;
+  user: NormalizedUser | null;
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
   const { signOut } = useClerk();
   const router = useRouter();
 
-  return (
+  return user ? (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
@@ -58,12 +56,6 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             <p className="text-sm">Dashboard</p>
           </Link>
         </DropdownMenuItem>
-        {/* <DropdownMenuItem asChild>
-          <Link href="/dashboard2" className="flex items-center space-x-2.5">
-            <LayoutDashboard className="h-4 w-4" />
-            <p className="text-sm">Another layout</p>
-          </Link>
-        </DropdownMenuItem> */}
         <DropdownMenuItem asChild>
           <Link
             href="/dashboard/billing"
@@ -97,5 +89,14 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+  ) : (
+    <Button
+      className="px-3"
+      variant="default"
+      size="sm"
+      onClick={() => router.push("/signin")}
+    >
+      Sign In
+    </Button>
   );
 }

@@ -143,7 +143,7 @@ export function InvestmentsDashboard({
                 label: "",
                 icon: Repeat2,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/recurring",
               },
             ]}
           />
@@ -156,7 +156,7 @@ export function InvestmentsDashboard({
                 label: "",
                 icon: Sparkle,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/aimagic",
               },
               {
                 title: "Save Money",
@@ -264,7 +264,7 @@ export function InvestmentsDashboard({
         >
           <Separator />
           <TotalBalanceCard />
-          <div className="overflow-scroll">
+          <div className="overflow-auto">
             <SmallInvestmentCard />
             <AllocationTable />
             <HoldingsTable />
@@ -272,7 +272,9 @@ export function InvestmentsDashboard({
           <div>
             <Investmentcards items={mails} />
           </div>
-          <TopCategoriesTable />
+          <div className="p-4">
+            <TopCategoriesTable />
+          </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[2]} minSize={30}>

@@ -32,6 +32,7 @@ const frameworks = [
   { value: "us_bank", label: "US Bank" },
 ];
 
+// @ts-ignore
 function ComboboxDemo({ onFrameworkSelect }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -84,6 +85,7 @@ function ComboboxDemo({ onFrameworkSelect }) {
 export function AddNewAccountDialog() {
   const [selectedFramework, setSelectedFramework] = useState("");
 
+  // @ts-ignore
   const handleFrameworkSelect = (framework) => {
     setSelectedFramework(framework);
   };
@@ -97,7 +99,7 @@ export function AddNewAccountDialog() {
         <DialogHeader>
           <DialogTitle>Select Bank Integration</DialogTitle>
           <DialogDescription>
-            Select the bank you want to connect to ProjectX.
+            Select the bank you want to connect to Badget.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

@@ -54,7 +54,7 @@ interface MailProps {
 export function CategoriesDashboard({
   accounts,
   mails,
-  defaultLayout = [265, 440, 400],
+  defaultLayout = [20, 40, 40],
   defaultCollapsed = false,
   navCollapsedSize,
 }: MailProps) {
@@ -66,7 +66,7 @@ export function CategoriesDashboard({
       <ResizablePanelGroup
         direction="horizontal"
         onLayout={(sizes: number[]) => {
-          document.cookie = `react-resizable-panels:layout=${JSON.stringify(
+          document.cookie = `react-resizable-panels:layout-categories=${JSON.stringify(
             sizes,
           )}`;
         }}
@@ -154,7 +154,7 @@ export function CategoriesDashboard({
                 label: "",
                 icon: Sparkle,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/aimagic",
               },
               {
                 title: "Save Money",
@@ -260,8 +260,10 @@ export function CategoriesDashboard({
           defaultSize={defaultLayout[1]}
           minSize={30}
         >
-          <Separator />
-          <SpentSoFarCard />
+          {/* <Separator /> */}
+          <div className="p-4">
+            <SpentSoFarCard />
+          </div>
           <div>
             {/* <SmallInvestmentCard /> */}
             <CategoriesTable />
@@ -270,7 +272,9 @@ export function CategoriesDashboard({
           <div>
             <Investmentcards items={mails} />
           </div>
-          <TopCategoriesTable />
+          <div className="p-4">
+            <TopCategoriesTable />
+          </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[2]}>

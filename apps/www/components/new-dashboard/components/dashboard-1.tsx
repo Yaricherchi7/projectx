@@ -29,6 +29,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AddAssetButton } from "@/components/buttons/AddAssetButton";
+import { AddAssetFlow } from "@/components/modals/add-asset-flow";
 import { WorkspaceSwitcher } from "@/app/(dashboard)/dashboard/_components/workspace-switcher";
 
 import { Mail } from "../data";
@@ -53,7 +55,7 @@ interface DashboardProps {
 export function Dashboard({
   accounts,
   mails,
-  defaultLayout = [265, 440, 655],
+  defaultLayout = [20, 40, 40],
   defaultCollapsed = false,
   navCollapsedSize,
 }: DashboardProps) {
@@ -140,7 +142,7 @@ export function Dashboard({
                 label: "",
                 icon: Repeat2,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/recurring",
               },
             ]}
           />
@@ -153,7 +155,7 @@ export function Dashboard({
                 label: "",
                 icon: Sparkle,
                 variant: "ghost",
-                link: "/dashboard/",
+                link: "/dashboard/aimagic",
               },
               {
                 title: "Save Money",
@@ -255,21 +257,32 @@ export function Dashboard({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-          <ScrollArea className="h-screen">
-            <div className="flex h-[52px] items-center px-4 py-2">
-              <h1 className="text-xl font-bold">Dashboard</h1>
+          <ScrollArea className="h-fit min-h-screen">
+            <div className="flex h-[52px] items-center justify-between px-4 py-2">
+              <div>
+                <h1 className="text-xl font-bold">Dashboard</h1>
+              </div>
+              <div className="flex items-center gap-4">
+                <AddAssetButton triggerLabel="Add Asset">
+                  <AddAssetFlow />
+                </AddAssetButton>
+              </div>
             </div>
+
             <Separator />
 
-            <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <form></form>
-            </div>
+            <div className="flex flex-col gap-4 p-4">
+              <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <form></form>
+              </div>
 
-            <CardsStats />
-            {/* <div className="ml-6 mt-6 flex gap-4"> */}
-            <div className="mx-6 mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
-              <TransactionsReviewTable />
-              <TopCategoriesTable />
+              <CardsStats />
+              {/* <div className="ml-6 mt-6 flex gap-4"> */}
+
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
+                <TransactionsReviewTable />
+                <TopCategoriesTable />
+              </div>
             </div>
           </ScrollArea>
         </ResizablePanel>

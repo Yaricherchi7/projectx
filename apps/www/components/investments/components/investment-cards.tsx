@@ -1,10 +1,10 @@
-import React, { ComponentProps } from "react";
+import React from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { ChevronRight } from "lucide-react";
 
 import { formatCurrency } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { Mail } from "../data";
@@ -23,6 +23,7 @@ export function Investmentcards({ items }: MailListProps) {
       if (!acc[item.category]) {
         acc[item.category] = [];
       }
+      // @ts-ignore
       acc[item.category].push(item);
       return acc;
     },
@@ -30,16 +31,16 @@ export function Investmentcards({ items }: MailListProps) {
   );
 
   return (
-    <ScrollArea className="h-screen">
+    <ScrollArea className="h-fit">
       <div className="flex flex-col gap-4 p-4 pt-0">
         {Object.entries(groupedItems).map(([category, items]) => (
           <React.Fragment key={category}>
-            <h2 className="text-lg font-semibold">{category}</h2>
+            <h2 className="ml-4 text-lg font-semibold">{category}</h2>
             {items.map((item) => (
               <Card
                 key={item.id}
                 onClick={() => setMail({ ...mail, selected: item.id })}
-                className="group flex items-center justify-between p-3 hover:bg-gray-100"
+                className="group flex items-center justify-between p-3 hover:bg-gray-100 hover:text-black"
               >
                 <div className="flex grow flex-col">
                   <CardTitle className="font-bold">{item.name}</CardTitle>

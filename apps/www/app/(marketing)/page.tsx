@@ -1,17 +1,17 @@
 import Link from "next/link";
+import { auth } from "@clerk/nextjs";
 import Balancer from "react-wrap-balancer";
 
-import { siteConfig } from "@/config/site";
-import { cn, nFormatter } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { GetStartedButton } from "@/components/buttons/GetStartedButton";
 import { BusinessLine } from "@/components/dashboard/businessline";
 import CallToActionComponent from "@/components/dashboard/calltoaction";
-import FeatureSection1 from "@/components/dashboard/featuresection1";
 import Featuressection from "@/components/dashboard/feautressection";
 import { Icons } from "@/components/shared/icons";
 
 export default async function IndexPage() {
+  const { userId } = auth();
   return (
     <>
       <section className="space-y-6 pb-12 pt-16 lg:py-28">
@@ -35,7 +35,7 @@ export default async function IndexPage() {
             <Balancer>
               Budget Better, Gain More Experience{" "}
               <span className="relative bg-gradient-to-r from-indigo-500 to-purple-500/80 bg-clip-text font-extrabold text-transparent">
-                Projectx
+                Badget
               </span>
             </Balancer>
           </h1>
@@ -56,9 +56,7 @@ export default async function IndexPage() {
           >
             <GetStartedButton />
             <Link
-              href="https://projectx-eight-gilt.vercel.app"
-              target="_blank"
-              rel="noreferrer"
+              href={userId ? "/dashboard" : "/signin"}
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
                 "px-4",
@@ -67,7 +65,7 @@ export default async function IndexPage() {
               <Icons.chevrondown className="mr-2 h-4 w-4" />
               <p>
                 <span className="hidden sm:inline-block">Lets explore</span>{" "}
-                Projectx{" "}
+                Badget{" "}
               </p>
             </Link>
           </div>

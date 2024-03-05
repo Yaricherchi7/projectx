@@ -1,0 +1,47 @@
+{
+  "name": "@projectx/connector-gocardless",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./server": "./src/server.ts",
+    "./webhooks": "./src/webhooks.ts",
+    "./env": "./src/env.mjs"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "git clean -xdf node_modules .turbo",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint . --no-error-on-unmatched-pattern",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@projectx/connector-core": "workspace:^0.1.0",
+    "@projectx/db": "workspace:^0.1.0",
+    "nordigen-node": "^1.4.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@projectx/eslint-config": "workspace:^0.2.0",
+    "@projectx/prettier-config": "workspace:^0.1.0",
+    "@projectx/tsconfig": "workspace:^0.1.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@projectx/eslint-config/base"
+    ]
+  },
+  "prettier": "@projectx/prettier-config"
+}
