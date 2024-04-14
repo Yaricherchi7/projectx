@@ -2,16 +2,11 @@
 
 import * as React from "react";
 import {
-  BadgeDollarSign,
   BarChart,
-  Briefcase,
-  Building,
   CreditCard,
-  DollarSign,
   HelpCircle,
   Layers,
   LayoutDashboard,
-  PiggyBank,
   Repeat2,
   Settings,
   Sparkle,
@@ -29,16 +24,15 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { AddAssetButton } from "@/components/buttons/AddAssetButton";
+import { AddButton } from "@/components/buttons/AddButton";
 import { AddAssetFlow } from "@/components/modals/add-asset-flow";
-import { WorkspaceSwitcher } from "@/app/(dashboard)/dashboard/_components/workspace-switcher";
-
-import { Mail } from "../data";
-import { useMail } from "../use-mail";
-import { Nav } from "./nav";
-import { CardsStats } from "./stats";
-import { TopCategoriesTable } from "./top-categories-table";
-import { TransactionsReviewTable } from "./transaction-review-table";
+import { WorkspaceSwitcher } from "@/app/(dashboard)/_components/workspace-switcher";
+import { Nav } from "@/app/(dashboard)/(workspaceId)/dashboard/_components/nav";
+import { CardsStats } from "@/app/(dashboard)/(workspaceId)/dashboard/_components/stats";
+import { TopCategoriesTable } from "@/app/(dashboard)/(workspaceId)/dashboard/_components/top-categories-table";
+import { TransactionsReviewTable } from "@/app/(dashboard)/(workspaceId)/dashboard/_components/transaction-review-table";
+import type { Mail } from "@/app/(dashboard)/(workspaceId)/dashboard/data";
+import { useMail } from "@/app/(dashboard)/(workspaceId)/dashboard/use-mail";
 
 interface DashboardProps {
   accounts: {
@@ -87,7 +81,7 @@ export function Dashboard({
           }}
           className={cn(
             isCollapsed &&
-              "min-w-[50px] transition-all duration-300 ease-in-out",
+            "min-w-[50px] transition-all duration-300 ease-in-out",
           )}
         >
           <div
@@ -123,27 +117,6 @@ export function Dashboard({
                 variant: "ghost",
                 link: "/dashboard/accounts",
               },
-              {
-                title: "Investments",
-                label: "",
-                icon: BarChart,
-                variant: "ghost",
-                link: "/dashboard/investments",
-              },
-              {
-                title: "Categories",
-                label: "",
-                icon: Tag,
-                variant: "ghost",
-                link: "/dashboard/categories",
-              },
-              {
-                title: "Recurring",
-                label: "",
-                icon: Repeat2,
-                variant: "ghost",
-                link: "/dashboard/recurring",
-              },
             ]}
           />
           <Separator />
@@ -151,22 +124,45 @@ export function Dashboard({
             isCollapsed={isCollapsed}
             links={[
               {
+                title: "Investments",
+                label: "Next",
+                icon: BarChart,
+                variant: "ghost",
+                link: "/dashboard/investments",
+              },
+              {
+                title: "Categories",
+                label: "Upcoming",
+                icon: Tag,
+                variant: "ghost",
+                link: "/dashboard/categories",
+              },
+              {
+                title: "Recurring",
+                label: "Upcoming",
+
+                icon: Repeat2,
+                variant: "ghost",
+                link: "/dashboard/recurring",
+              },
+              {
                 title: "Ai Magic",
-                label: "",
+                label: "Upcoming",
+
                 icon: Sparkle,
                 variant: "ghost",
                 link: "/dashboard/aimagic",
               },
               {
                 title: "Save Money",
-                label: "",
+                label: "Future",
                 icon: Wallet,
                 variant: "ghost",
                 link: "/dashboard/savemoney",
               },
               {
                 title: "Grow Assets",
-                label: "",
+                label: "Future",
                 icon: Sprout,
                 variant: "ghost",
                 link: "/dashboard/",
@@ -174,7 +170,7 @@ export function Dashboard({
             ]}
           />
           <Separator />
-          <Nav
+          {/* <Nav
             isCollapsed={isCollapsed}
             links={[
               {
@@ -233,7 +229,7 @@ export function Dashboard({
                 link: "/dashboard/",
               },
             ]}
-          />
+          /> */}
           <Separator />
           <Nav
             isCollapsed={isCollapsed}
@@ -263,9 +259,9 @@ export function Dashboard({
                 <h1 className="text-xl font-bold">Dashboard</h1>
               </div>
               <div className="flex items-center gap-4">
-                <AddAssetButton triggerLabel="Add Asset">
+                <AddButton triggerLabel="Add Asset">
                   <AddAssetFlow />
-                </AddAssetButton>
+                </AddButton>
               </div>
             </div>
 
@@ -273,7 +269,7 @@ export function Dashboard({
 
             <div className="flex flex-col gap-4 p-4">
               <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <form></form>
+                <form />
               </div>
 
               <CardsStats />

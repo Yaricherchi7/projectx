@@ -1,6 +1,6 @@
-import { SubscriptionPlan } from "@/types";
+import type { SubscriptionPlan } from "@/types";
 
-import { env } from "@/env.mjs";
+import { env } from "@/env";
 
 export const pricingData: SubscriptionPlan[] = [
   {

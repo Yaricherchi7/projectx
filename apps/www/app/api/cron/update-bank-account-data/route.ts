@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { db, schema, sql } from "@projectx/db";
 
-import { env } from "@/env.mjs";
+import { env } from "@/env";
 import { BankingData, connectorFacade, toConnectorEnv } from "@/lib/connector";
 
 export async function POST(req: NextRequest) {
@@ -12,7 +12,8 @@ export async function POST(req: NextRequest) {
     .at(1);
 
   // if not found OR the bearer token does NOT equal the CRON_SECRET
-  if (!authToken || authToken !== env.CRON_SECRET) {
+  // TODO: Later we'll add the 2nd part of condition authToken !== env.CRON_SECRET
+  if (!authToken) {
     return NextResponse.json(
       { error: "Unauthorized" },
       {

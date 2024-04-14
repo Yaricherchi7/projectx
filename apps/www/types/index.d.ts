@@ -1,14 +1,4 @@
-import type { Icon } from "lucide-react";
-
-import { Icons } from "@/components/shared/icons";
-
-export type NavItem = {
-  title: string;
-  href: string;
-  disabled?: boolean;
-};
-
-export type MainNavItem = NavItem;
+import type { Icons } from "@/components/shared/icons";
 
 export type SidebarNavItem = {
   title: string;
@@ -39,16 +29,6 @@ export type SiteConfig = {
 };
 
 export type DocsConfig = {
-  mainNav: MainNavItem[];
-  sidebarNav: SidebarNavItem[];
-};
-
-export type MarketingConfig = {
-  mainNav: MainNavItem[];
-};
-
-export type DashboardConfig = {
-  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
@@ -66,6 +46,6 @@ export type SubscriptionPlan = {
     monthly: number;
   };
   stripeIds: {
-    monthly: string | null;
+    monthly: string | null | undefined;
   };
 };

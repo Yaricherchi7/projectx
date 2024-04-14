@@ -1,12 +1,12 @@
 import Image from "next/image";
+import { LockClosedIcon } from "@radix-ui/react-icons";
 import {
-  ArrowPathIcon,
-  CloudArrowUpIcon,
-  Cog6ToothIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
+  ArrowUpIcon,
+  CloudDownload,
+  CogIcon,
+  FingerprintIcon,
   ServerIcon,
-} from "@heroicons/react/20/solid";
+} from "lucide-react";
 import { Balancer } from "react-wrap-balancer";
 
 const features = [
@@ -14,7 +14,7 @@ const features = [
     name: "Revolutionizing Finance: AI-Powered Analysis",
     description:
       "Harness advanced AI to analyze financial trends and patterns, offering you actionable insights for smarter decision-making.",
-    icon: CloudArrowUpIcon,
+    icon: CloudDownload,
   },
   {
     name: "Secure Your Finances with Projectx",
@@ -26,19 +26,19 @@ const features = [
     name: "Automate Your Finances: AI and Efficiency",
     description:
       "Streamline your financial management with AI-driven automation for bill payments, budget tracking, and more.",
-    icon: ArrowPathIcon,
+    icon: ArrowUpIcon,
   },
   {
     name: "Stay Ahead with AI-Enhanced Financial Monitoring",
     description:
       "Get real-time updates and security alerts on your financial portfolio, keeping you informed and proactive.",
-    icon: FingerPrintIcon,
+    icon: FingerprintIcon,
   },
   {
     name: "Seamless Integration Financial Ecosystem",
     description:
       "Easily connect Projectx with your existing financial tools for a unified and efficient financial management experience.",
-    icon: Cog6ToothIcon,
+    icon: CogIcon,
   },
   {
     name: "Reliable Financial Data Management with Projectx",
@@ -81,7 +81,7 @@ export default function Featuressection() {
       <div className="relative overflow-hidden pt-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Image
-            src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
+            src="https://raw.githubusercontent.com/auxibee/badget/main/project-app-screenshot.webp"
             alt="App screenshot"
             className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
             width={2432}

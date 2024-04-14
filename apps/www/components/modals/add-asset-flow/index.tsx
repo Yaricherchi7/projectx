@@ -1,9 +1,10 @@
+"use client";
+
 import { useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { FlowStep, useFlowControl } from "@/hooks/use-flow-control";
+import { useFlowControl, type FlowStep } from "@/hooks/use-flow-control";
 import { useFlowModalState } from "@/hooks/use-flow-modal-state";
-import { Button } from "@/components/ui/button";
 import {
   DialogDescription,
   DialogHeader,
@@ -11,17 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { AccountForm } from "@/components/forms/account-form";
 
+import { Footer } from "../parts/footer";
 import { AccountTypeSelection } from "./components/account-type-selection";
-import { Footer } from "./components/footer";
 import { HeaderControls } from "./components/header-controls";
 
-export type AccountType =
-  | "real-estate"
-  | "crypto"
-  | "investment"
-  | "input"
-  | "car"
-  | "misc";
+export type AccountType = "real-estate" | "investment" | "account" | "asset";
 
 export interface AccountTypeInfo {
   type: AccountType;
@@ -38,6 +33,9 @@ export const AddAssetFlow = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const handleSelectAccountType = useCallback(
     (selectedAccountType: AccountTypeInfo) => {
+      if (form.formState.dirtyFields.name) {
+        form.resetField("name");
+      }
       setAccountTypeInfo(selectedAccountType);
       goToNextStep();
     },
@@ -57,8 +55,8 @@ export const AddAssetFlow = () => {
     () => [
       {
         id: 0,
-        title: "Add new account",
-        description: "Add the account type you want.",
+        title: "Add new account or asset",
+        description: "Add the account or asset you want.",
         component: (
           <AccountTypeSelection onSelectAccountType={handleSelectAccountType} />
         ),
@@ -68,7 +66,7 @@ export const AddAssetFlow = () => {
         title: accountFormTitle,
         description: accountFormDescription,
         component: accountTypeInfo ? (
-          <AccountForm type={accountTypeInfo.type} form={form} />
+          <AccountForm type={accountTypeInfo.type} />
         ) : null,
       },
     ],
@@ -106,9 +104,6 @@ export const AddAssetFlow = () => {
           transition={{ duration: 0.2 }}
         >
           {currentStep?.component}
-          <Footer show={currentStepId === steps.length - 1}>
-            <Button>Add Property</Button>
-          </Footer>
         </motion.div>
       </AnimatePresence>
     </>

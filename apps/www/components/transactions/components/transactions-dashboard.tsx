@@ -31,15 +31,15 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { WorkspaceSwitcher } from "@/app/(dashboard)/dashboard/_components/workspace-switcher";
-
-import { Mail } from "../data";
-import { useMail } from "../use-mail";
-import { AccountsReviewTable2 } from "./accounts-review-table2";
-import { MailDisplay } from "./mail-display";
-import { MailList } from "./mail-list";
-import { Nav } from "./nav";
-import { TransactionsDisplay } from "./transactions-display";
+import { AddButton } from "@/components/buttons/AddButton";
+import AddTransactionModal from "@/components/modals/add-transaction";
+import { WorkspaceSwitcher } from "@/app/(dashboard)/_components/workspace-switcher";
+import { AccountsReviewTable2 } from "@/app/(dashboard)/(workspaceId)/banking/transactions/_components/accounts-review-table2";
+import { MailList } from "@/app/(dashboard)/(workspaceId)/banking/transactions/_components/mail-list";
+import { Nav } from "@/app/(dashboard)/(workspaceId)/banking/transactions/_components/nav";
+import { TransactionsDisplay } from "@/app/(dashboard)/(workspaceId)/banking/transactions/_components/transactions-display";
+import type { Mail } from "@/app/(dashboard)/(workspaceId)/banking/transactions/data";
+import { useMail } from "@/app/(dashboard)/(workspaceId)/banking/transactions/use-mail";
 
 interface TransactionsDashboardProps {
   accounts: {
@@ -261,20 +261,25 @@ export function TransactionsDashboard({
           <Tabs defaultValue="all">
             <div className="flex h-[52px] items-center px-4 py-2">
               <h1 className="text-xl font-bold">Transactions</h1>
-              <TabsList className="ml-auto">
-                <TabsTrigger
-                  value="all"
-                  className="text-zinc-600 dark:text-zinc-200"
-                >
-                  All transactions
-                </TabsTrigger>
-                <TabsTrigger
-                  value="unread"
-                  className="text-zinc-600 dark:text-zinc-200"
-                >
-                  Unread
-                </TabsTrigger>
-              </TabsList>
+              <div className="ms-4 flex flex-grow items-center justify-between">
+                <TabsList>
+                  <TabsTrigger
+                    value="all"
+                    className="text-zinc-600 dark:text-zinc-200"
+                  >
+                    All transactions
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="unread"
+                    className="text-zinc-600 dark:text-zinc-200"
+                  >
+                    Unread
+                  </TabsTrigger>
+                </TabsList>
+                <AddButton triggerLabel="Add Transaction">
+                  <AddTransactionModal />
+                </AddButton>
+              </div>
             </div>
             <Separator />
             <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -286,8 +291,7 @@ export function TransactionsDashboard({
               </form>
             </div>
             <TabsContent value="all" className="m-0">
-              {/* @ts-ignore */}
-              <AccountsReviewTable2 mailId={undefined} />
+              <AccountsReviewTable2 mailId="" />
             </TabsContent>
             <TabsContent value="unread" className="m-0">
               <MailList items={mails.filter((item) => !item.read)} />
